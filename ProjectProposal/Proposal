@@ -1,0 +1,68 @@
+Airplane Management System
+─
+Project: Requirement analysis and Feature Description
+
+
+
+Overview
+	In this project, we shall build up a Domestic Airline Management System website from scratch. This type of website provides information regarding certain airlines and their flight schedules. We will feature Reservations, Flight Schedules, Airport Information, User Login systems, and an Admin system to run the whole system and manage it. There will be options regarding the departure, and arrival at which airports either it will be a one-way tour or a round trip the timings and we will represent the whole thing to the public. They can check the schedules and book flights according to their preferences. We will take user information for an easy booking system.
+
+
+Technology Stack:
+FRONTEND:
+HTML
+CSS
+BOOTSTRAP
+BACKEND:
+Python
+Django
+MYSQL
+API’s(If needed)
+	
+
+
+Features:
+Home:
+	SignUp:
+		Registering as Customer They need to provide their information for the account and accessing the whole system.
+	Dashboard will be present here to take the inputs of the flights preference such as arrival, departure etc.
+		
+
+
+Displays the Summary of the Lists:
+	The flight schedules will be posted here the admin will be able to make changes add, edit and other possible entries.
+
+Manage Airlines And Airport:
+ 	This management will be done by the admin user. The admins will update necessary information and changes of the airlines such as:
+
+
+Add New Airline
+  Add New Airport
+List All Airlines
+  List All Airports
+View Airline Details
+  Edit Airport 
+Edit Airline Details
+ Delete Airport
+Delete Airline
+
+
+
+
+Manage Flights:
+ 	One of the main objective of this website is to maintain the flights and its details from time to time this will be updated accordingly ensuring proper database structure and relation among the tables. The features will be
+Add New Flight
+List All Flights
+View Flight Details
+     Edit Flight Details
+      Delete Flight
+
+
+Manage Reservation:
+	From the user preferences we will get the Reservations and will be updated and maintained with the features below:
+
+List All Reservations
+View Reservation Details
+           Update Reservation Status
+Delete Reservation
+
