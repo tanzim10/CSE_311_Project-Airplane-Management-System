@@ -18,6 +18,9 @@ Python
 Django
 MYSQL
 API’s(If needed)
+
+GitHub Repository:
+https://github.com/tanzim10/CSE_311_Project-Airplane-Management-System
 	
 
 
@@ -25,7 +28,7 @@ Features:
 Home:
 	SignUp:
 		Registering as Customer They need to provide their information for the account and accessing the whole system.
-	Dashboard will be present here to take the inputs of the flights preference such as arrival, departure etc.
+	The dashboard will be present here to take the inputs of the flights preference such as arrival, departure etc.
 		
 
 
@@ -50,7 +53,7 @@ Delete Airline
 
 
 Manage Flights:
- 	One of the main objective of this website is to maintain the flights and its details from time to time this will be updated accordingly ensuring proper database structure and relation among the tables. The features will be
+ 	One of the main objectives of this website is to maintain the flights and its details from time to time this will be updated accordingly ensuring proper database structure and relation among the tables. The features will be
 Add New Flight
 List All Flights
 View Flight Details
@@ -59,10 +62,35 @@ View Flight Details
 
 
 Manage Reservation:
-	From the user preferences we will get the Reservations and will be updated and maintained with the features below:
+	From the user preferences we will get the Reservations which will be updated and maintained with the features below:
 
 List All Reservations
 View Reservation Details
            Update Reservation Status
 Delete Reservation
+
+
+
+
+
+
+User Profile
+Passenger Profiles provides a powerful tool for customers to interact with your airline by creating profiles. They can store all of their contact details online so that when they return to make bookings the system recognizes them and automatically fills in the booking forms.In the user profile section, users can view information about them and if they want to change any of their information they can update that.
+
+            View User Information
+            Update User Information
+            Update User Password
+
+
+Log Out
+Logging out informs the website that the current user wishes to end the login session. Logging out ensures that user access and user credentials are safe after the login session
+Public  
+In the public window, user can search flights, view available flights, and reserve flights
+
+              Search Flight Form
+              Flight's Search Result Page
+              Reservation Form
+              Submit Reservation
+
+Gantt Chart:
 
