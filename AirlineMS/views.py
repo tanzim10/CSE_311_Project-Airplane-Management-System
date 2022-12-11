@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render , redirect
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from .forms import CreateUserForm
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 
 airline = [
@@ -37,14 +39,27 @@ def login(request):
     return render(request, 'AirlineMS/login.html',)
 
 
-def register(request):
+def register(response):
     form = CreateUserForm()
 
-    if request.method =='POST':
-        form = CreateUserForm(request.POST)
+    if response.method =='POST':
+        form = CreateUserForm(response.POST)
         if form.is_valid():
             form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(response, f'Your account has been created! You are able to Login.')
+            return redirect('login')
+
+    else:
+        form = CreateUserForm()
 
 
     context = {'form': form}
-    return render(request, 'AirlineMS/register.html',context)
+    return render(response, 'AirlineMS/register.html',context)
+
+@login_required
+def profile(response):
+
+    return render(response, 'AirlineMS/profile.html')
+
+

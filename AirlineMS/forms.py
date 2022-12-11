@@ -5,20 +5,8 @@ from django.contrib.auth.models import User
 
 
 class CreateUserForm(UserCreationForm):
-    username = forms.CharField(max_length=100,
-                               widget=forms.TextInput
-                               (attrs={'placeholder': 'Enter your first name'}))
-    email = forms.CharField(max_length=100,
-                            widget=forms.EmailInput
-                            (attrs={'placeholder': 'Enter your email'}))
-    
-    password1  = forms.CharField(max_length=100,
-                            widget=forms.PasswordInput
-                            (attrs={'placeholder': 'Enter your password'}))
+    email = forms.EmailField()
 
-    password2 = forms.CharField(max_length=100,
-                                widget=forms.PasswordInput
-                                (attrs={'placeholder': 'Confirm your password'}))
     class Meta:
         model = User
         fields =['username','email','password1','password2']
