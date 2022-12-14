@@ -1,14 +1,30 @@
 from django.db import models
 from django.conf import settings
-from phone_field import PhoneField
-from django.contrib.auth.models import AbstractUser, User
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
-class User(AbstractUser):
+class Profile(models.Model):
 
-    f_name = models.CharField(max_length=100)
-    l_name = models.CharField(max_length=100)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     address = models.TextField()
-    phone_no = PhoneField(blank = True, help_text = 'Contact Phone Number')
-    email_v = models.ForeignKey(to = settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+    phone_num = models.CharField(max_length=15)
+
+    def __str__(self):
+        return f'{self.user.username} Profile'
+
+    @receiver(post_save, sender =User)
+    def create_profile(sender,instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user = instance)
+
+    @receiver(post_save, sender=User)
+    def save_profile(sender, instance, **kwargs):
+        instance.profile.save()
+
+
+
+
+
 

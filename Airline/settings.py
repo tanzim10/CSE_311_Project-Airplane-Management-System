@@ -124,6 +124,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -134,6 +135,5 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = 'Air-home'
 LOGIN_URL = 'login'
 
-AUTH_USER_MODEL = 'AirlineMS.User'
 
 
