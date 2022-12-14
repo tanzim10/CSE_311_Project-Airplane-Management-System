@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'AirlineMS.apps.AirlinemsConfig',
     'crispy_forms',
+    'phone_field',
 ]
 
 MIDDLEWARE = [
@@ -132,5 +133,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = 'Air-home'
 LOGIN_URL = 'login'
+
+AUTH_USER_MODEL = 'AirlineMS.User'
 
 
