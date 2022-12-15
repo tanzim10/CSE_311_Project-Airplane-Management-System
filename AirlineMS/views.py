@@ -44,7 +44,7 @@ def register(response):
     form = CreateUserForm()
     profile = ProfileForm
 
-    if response.method =='POST':
+    if response.method == 'POST':
         form = CreateUserForm(response.POST)
         if form.is_valid():
             form.save()
@@ -58,13 +58,14 @@ def register(response):
         form = CreateUserForm()
 
 
-    context = {'form': form}
+    context = {'form': form,
+               'profile':profile}
     return render(response, 'AirlineMS/register.html',context)
 
 @login_required
 def profile(response):
-
-    return render(response, 'AirlineMS/profile.html')
+    context = {'profile':profile}
+    return render(response, 'AirlineMS/profile.html',context)
 
 
 

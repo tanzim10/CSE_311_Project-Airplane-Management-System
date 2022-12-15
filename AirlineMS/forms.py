@@ -19,7 +19,7 @@ class CreateUserForm(UserCreationForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['address', 'phone_num']
+        fields = ['address', 'phone_number']
 
 
 
