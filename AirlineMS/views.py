@@ -47,11 +47,8 @@ def register(response):
     if response.method == 'POST':
         form = CreateUserForm(response.POST)
         if form.is_valid():
-            form.save()
-            profile = CreateUserForm.objects.create(user=response.user)
-            username = form.cleaned_data.get('username')
+            user = form.save()
             messages.success(response, f'Your account has been created! You are able to Login.')
-            profile.save()
             return redirect('login')
 
     else:
