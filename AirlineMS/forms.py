@@ -10,10 +10,9 @@ class CreateUserForm(UserCreationForm):
     last_name = forms.CharField()
     email = forms.EmailField()
 
-
     class Meta:
         model = User
-        fields =['first_name','last_name','username','email','password1','password2']
+        fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2']
 
 
 class ProfileForm(forms.ModelForm):
@@ -22,9 +21,17 @@ class ProfileForm(forms.ModelForm):
         fields = ['address', 'phone_number']
 
 
+class UserProfileUpdate(forms.ModelForm):
+    first_name = forms.CharField()
+    last_name = forms.CharField()
+    email = forms.EmailField()
+
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'username', 'email']
 
 
-
-
-
-
+class ProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['address', 'phone_number']

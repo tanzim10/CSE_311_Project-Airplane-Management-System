@@ -1,7 +1,7 @@
 from django.shortcuts import render , redirect
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
-from .forms import CreateUserForm,ProfileForm
+from .forms import CreateUserForm,ProfileForm,UserProfileUpdate,ProfileUpdateForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Profile
@@ -61,8 +61,32 @@ def register(response):
 
 @login_required
 def profile(response):
-    context = {'profile':profile}
-    return render(response, 'AirlineMS/profile.html',context)
+
+
+    return render(response, 'AirlineMS/profile.html')
+
+@login_required
+def profile_update(response):
+    u_form = UserProfileUpdate(response.POST, instance=response.user)
+    p_form = ProfileForm(response.POST, response.FILES, instance=response.user.profile)
+
+    if u_form.is_valid() and p_form.is_valid():
+        u_form.save()
+        p_form.save()
+        messages.success(response, f'Your account has been updated!')
+        return redirect('profile')
+
+    else:
+        u_form = UserProfileUpdate(instance=response.user)
+        p_form = ProfileUpdateForm(instance=response.user.profile)
+
+    context = {
+        'u_form': u_form,
+        'p_form': p_form
+    }
+
+    return render(response,'AirlineMS/profile_update.html',context)
+
 
 
 
