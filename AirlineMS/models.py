@@ -1,8 +1,5 @@
 from django.db import models
-from django.conf import settings
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 
 
 class Profile(models.Model):
@@ -13,6 +10,44 @@ class Profile(models.Model):
 
     def __str__(self):
         return f'{self.user.username} Profile'
+
+
+class Airlines(models.Model):
+    a_name = models.CharField(max_length = 250)
+    status = models.CharField(max_length=2, choices= (('1','Active'),('2','Inactive')), default =1)
+    date_created = models.DateTimeField(auto_now=True)
+
+
+    def __str__(self):
+        return str(f"{self.a_name}")
+
+
+
+class Airport(models.Model):
+    air_name = models.CharField(max_length=250)
+    city = models.CharField(max_length=250)
+    status = models.CharField(max_length=2, choices=(('1', 'Active'), ('2', 'Inactive')), default=1)
+    date_created = models.DateTimeField(auto_now=True)
+
+
+    def __str__(self):
+        return str(f"{self.air_name}")
+
+    
+class Airplanes(models.Model):
+    airplane_name = models.CharField(max_length=250)
+    type = models.CharField(max_length=250)
+    max_seats = models.IntegerField(default=0)
+
+
+    def __str__(self):
+        return str(f'{self.airplane_name}')
+
+
+class Flights(models.Model):
+    fl_code = models.CharField(max_length=100)
+    duration = models.CharField(max_length=250)
+
 
 
 
