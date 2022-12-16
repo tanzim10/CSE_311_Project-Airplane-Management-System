@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 
 class Profile(models.Model):
@@ -48,6 +49,15 @@ class Flights(models.Model):
     fl_code = models.CharField(max_length=100)
     duration = models.CharField(max_length=250)
 
+
+class Reservation(models.Model):
+    flight = models.ForeignKey(Flights, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
+    status = models.CharField(max_length=2,choices =(('0','Pending'),('1','Confirmed'),('2','Cancelled')))
+    date_created = models.DateTimeField(default= timezone.now)
+    def __str__(self):
+        return str(f"{self.flight.fl_code} - {self.user.first_name} {self.user.last_name}")
 
 
 

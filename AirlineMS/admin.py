@@ -6,6 +6,7 @@ admin.site.register(Airport)
 admin.site.register(Airplanes)
 admin.site.register(Flights)
 admin.site.register(Airlines)
+admin.site.register(Reservation)
 
 
 
