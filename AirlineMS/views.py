@@ -47,7 +47,8 @@ def register(response):
     if response.method == 'POST':
         form = CreateUserForm(response.POST)
         if form.is_valid():
-            user = form.save()
+            form.save()
+            profile.save()
             messages.success(response, f'Your account has been created! You are able to Login.')
             return redirect('login')
 
@@ -61,7 +62,6 @@ def register(response):
 
 @login_required
 def profile(response):
-
 
     return render(response, 'AirlineMS/profile.html')
 

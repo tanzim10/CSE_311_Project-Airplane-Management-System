@@ -24,6 +24,6 @@ urlpatterns = [
     path('login/',auth_views.LoginView.as_view(template_name ='AirlineMS/login.html'), name ='login'),
     path('logout/',auth_views.LogoutView.as_view(template_name ='AirlineMS/logout.html'), name ='logout'),
     path('profile/', main_views.profile, name='profile'),
-    path('profile_update',main_views.profile_update,name ='profile-update')
+    path('profile_update/',main_views.profile_update,name ='profile-update')
 
 ]

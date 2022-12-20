@@ -53,9 +53,10 @@ class Reservation(models.Model):
 
     flight = models.ForeignKey(Flights, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
     status = models.CharField(max_length=2,choices =(('0','Pending'),('1','Confirmed'),('2','Cancelled')))
     date_created = models.DateTimeField(default= timezone.now)
+    ticket_no = models.CharField(max_length=100,)
+
     def __str__(self):
         return str(f"{self.flight.fl_code} - {self.user.first_name} {self.user.last_name}")
 
@@ -66,5 +67,27 @@ class FlightSchedule(models.Model):
     arr_time = models.TimeField()
     dept_time = models.TimeField()
     flight_date = models.DateTimeField()
+
+class Route(models.Model):
+
+    route_no = models.IntegerField()
+    flying_from = models.CharField(max_length=100)
+    flying_to = models.CharField(max_length=100)
+    flight = models.ForeignKey(Flights, on_delete=models.CASCADE)
+
+
+class Fare(models.Model):
+
+    base = models.CharField(max_length=100)
+    total = models.CharField(max_length=100)
+    reservation = models.OneToOneField(Reservation,on_delete=models.CASCADE)
+
+class Passenger(models.Model):
+
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    full_name = models.CharField(max_length=100)
+    dob = models.DateTimeField()
+
+
 
 

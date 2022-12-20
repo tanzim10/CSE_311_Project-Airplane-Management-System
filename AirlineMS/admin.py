@@ -9,4 +9,6 @@ admin.site.register(Airlines)
 admin.site.register(Airplanes)
 admin.site.register(Reservation)
 admin.site.register(FlightSchedule)
-
+admin.site.register(Route)
+admin.site.register(Passenger)
+admin.site.register(Fare)
