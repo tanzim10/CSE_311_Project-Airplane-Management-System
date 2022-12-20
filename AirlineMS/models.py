@@ -19,9 +19,15 @@ class Airlines(models.Model):
     date_created = models.DateTimeField(auto_now=True)
 
 
+
     def __str__(self):
         return str(f"{self.a_name}")
 
+
+class Airplanes(models.Model):
+    airplane_name = models.CharField(max_length=250)
+    type = models.CharField(max_length=250)
+    max_seats = models.IntegerField(default=0)
 
 
 class Airport(models.Model):
@@ -29,28 +35,22 @@ class Airport(models.Model):
     city = models.CharField(max_length=250)
     status = models.CharField(max_length=2, choices=(('1', 'Active'), ('2', 'Inactive')), default=1)
     date_created = models.DateTimeField(auto_now=True)
+    airplane = models.ManyToManyField(Airplanes)
 
 
     def __str__(self):
         return str(f"{self.air_name}")
 
-    
-class Airplanes(models.Model):
-    airplane_name = models.CharField(max_length=250)
-    type = models.CharField(max_length=250)
-    max_seats = models.IntegerField(default=0)
-
-
-    def __str__(self):
-        return str(f'{self.airplane_name}')
-
 
 class Flights(models.Model):
     fl_code = models.CharField(max_length=100)
     duration = models.CharField(max_length=250)
+    airline = models.ForeignKey(Airlines,on_delete=models.CASCADE)
+
 
 
 class Reservation(models.Model):
+
     flight = models.ForeignKey(Flights, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
@@ -60,14 +60,11 @@ class Reservation(models.Model):
         return str(f"{self.flight.fl_code} - {self.user.first_name} {self.user.last_name}")
 
 
+class FlightSchedule(models.Model):
 
-
-
-
-
-
-
-
-
+    flight = models.ForeignKey(Flights, on_delete=models.CASCADE,primary_key=True)
+    arr_time = models.TimeField()
+    dept_time = models.TimeField()
+    flight_date = models.DateTimeField()
 
 

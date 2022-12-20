@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'Airline.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME':'airlines',
+        'NAME':'airlinems',
         'USER':'root',
         'PASSWORD':'Tfra1024',
         'PORT':3306,
