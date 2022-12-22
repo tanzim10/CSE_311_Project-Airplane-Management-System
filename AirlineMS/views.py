@@ -1,7 +1,7 @@
 from django.shortcuts import render , redirect
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
-from .forms import CreateUserForm,ProfileForm,UserProfileUpdate,ProfileUpdateForm
+from .forms import CreateUserForm,ProfileForm,UserProfileUpdate,ProfileUpdateForm,SaveReservation
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Profile
@@ -41,7 +41,6 @@ def login(request):
 
 
 def register(response):
-    form = CreateUserForm()
     profile = ProfileForm
 
     if response.method == 'POST':
@@ -86,6 +85,26 @@ def profile_update(response):
     }
 
     return render(response,'AirlineMS/profile_update.html',context)
+
+
+@login_required
+
+def reservation(response):
+
+    if response.method == 'POST':
+        reserve = SaveReservation(response.POST)
+        if reserve.is_valid():
+
+            reserve.save()
+            messages.success(response, f'Your Reservation has been completed!')
+            return redirect('Air-home')
+
+    else:
+        reserve = SaveReservation()
+
+    context = {'reserve': reserve}
+
+    return render(response,'AirlineMS/reservation.html',context)
 
 
 

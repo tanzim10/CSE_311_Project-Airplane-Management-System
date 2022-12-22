@@ -2,7 +2,7 @@ from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.contrib.auth.models import User
-from .models import Profile
+from .models import *
 
 
 class CreateUserForm(UserCreationForm):
@@ -38,13 +38,22 @@ class ProfileUpdateForm(forms.ModelForm):
 
 class SaveReservation(forms.ModelForm):
 
-    flight = forms.CharField(max_length=250)
-    type = forms.CharField(max_length=250)
-    first_name = forms.CharField(max_length=250)
-    last_name = forms.CharField(max_length=250)
-    gender = forms.CharField(max_length=250)
-    contact = forms.CharField(max_length=250)
-    email = forms.CharField(max_length=250)
-    address = forms.Textarea()
+    class Meta:
+        model = Reservation
+        fields = ['flight', 'first_name', 'last_name', 'gender', 'contact', 'email', 'address',]
+
+
+    def clean_flight(self):
+        fid = self.cleaned_data['flight']
+        try:
+            flight = Flights.objects.get(id =fid)
+            return flight
+        except:
+            raise forms.ValidationError(f"Invalid Flight")
+
+
+
+
+
 
 

@@ -52,12 +52,17 @@ class Flights(models.Model):
 class Reservation(models.Model):
 
     flight = models.ForeignKey(Flights, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
     status = models.CharField(max_length=2,choices =(('0','Pending'),('1','Confirmed'),('2','Cancelled')))
     date_created = models.DateTimeField(default= timezone.now)
-    ticket_no = models.CharField(max_length=100)
+    ticket_no = models.CharField(max_length=100,null=True)
     gender = models.CharField(max_length=10,choices=(('Male','Male'),('Female','Female')), default='Male')
-    
+    first_name = models.CharField(max_length=250,null =True)
+    last_name = models.CharField(max_length=250,null =True)
+    gender = models.CharField(max_length=50, choices=(('Male', 'Male'), ('Female', 'Female')), default='Male')
+    email = models.CharField(max_length=250,null=True)
+    contact = models.CharField(max_length=250,null =True)
+    address = models.CharField(max_length=250,null=True)
+
 
 
 
@@ -68,8 +73,8 @@ class Reservation(models.Model):
 class FlightSchedule(models.Model):
 
     flight = models.ForeignKey(Flights, on_delete=models.CASCADE,primary_key=True)
-    arr_time = models.TimeField()
-    dept_time = models.TimeField()
+    arr_time = models.DateTimeField()
+    dept_time = models.DateTimeField()
     flight_date = models.DateTimeField()
 
 class Route(models.Model):
