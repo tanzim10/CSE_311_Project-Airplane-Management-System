@@ -35,3 +35,16 @@ class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['address', 'phone_number']
+
+class SaveReservation(forms.ModelForm):
+
+    flight = forms.CharField(max_length=250)
+    type = forms.CharField(max_length=250)
+    first_name = forms.CharField(max_length=250)
+    last_name = forms.CharField(max_length=250)
+    gender = forms.CharField(max_length=250)
+    contact = forms.CharField(max_length=250)
+    email = forms.CharField(max_length=250)
+    address = forms.Textarea()
+
+

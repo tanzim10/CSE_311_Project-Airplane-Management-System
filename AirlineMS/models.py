@@ -55,7 +55,11 @@ class Reservation(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     status = models.CharField(max_length=2,choices =(('0','Pending'),('1','Confirmed'),('2','Cancelled')))
     date_created = models.DateTimeField(default= timezone.now)
-    ticket_no = models.CharField(max_length=100,)
+    ticket_no = models.CharField(max_length=100)
+    gender = models.CharField(max_length=10,choices=(('Male','Male'),('Female','Female')), default='Male')
+    
+
+
 
     def __str__(self):
         return str(f"{self.flight.fl_code} - {self.user.first_name} {self.user.last_name}")
