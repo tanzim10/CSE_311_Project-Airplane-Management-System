@@ -1,33 +1,17 @@
 from django.shortcuts import render , redirect
-from django.http import HttpResponse
-from django.contrib.auth.forms import UserCreationForm
 from .forms import CreateUserForm,ProfileForm,UserProfileUpdate,ProfileUpdateForm,SaveReservation,SaveRoute
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import *
-from .models import Profile
 
 
-airline = [
-    {
-        'Name': 'Air Astra',
-        'Airplane number': 'BX10231',
-        'Type': 'AIRBUS A380',
-        'Capacity': '200'
-    },
-    {
-        'Name': 'West Jet',
-        'Airplane number': 'CX10231',
-        'Type': 'AIRBUS A350',
-        'Capacity': '350'
-    }
-
-]
 
 
 def home(request):
     airlines = Airlines.objects.all()
-    context = {'airlines': airlines}
+    airports = Airport.objects.all()
+    context = {'airlines': airlines,
+               'airports': airports}
     return render(request,'AirlineMS/home.html',context)
 
 

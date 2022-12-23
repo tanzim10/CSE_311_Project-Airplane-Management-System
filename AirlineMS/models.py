@@ -82,13 +82,13 @@ class FlightSchedule(models.Model):
     flight_date = models.DateField()
 
     def __str__(self):
-        return str(f"{self.flight.flcode} -{self.flight_date}")
+        return str(f"{self.flight.fl_code} -{self.flight_date}")
 
 class Route(models.Model):
 
     route_no = models.AutoField(primary_key=True)
-    flying_from = models.CharField(max_length=100, choices =(('DHK','DHK'),('CTG','CTG'),('CXB','CXB'),('JSR','JSR'),('SDP','SDP'),('BZL','BZL')),default='DHK')
-    flying_to = models.CharField(max_length=100,choices =(('DHK','DHK'),('CTG','CTG'),('CXB','CXB'),('JSR','JSR'),('SDP','SDP'),('BZL','BZL')),default='CTG')
+    flying_from = models.CharField(max_length=100, choices =(('DHK','DHK'),('CTG','CTG'),('CXB','CXB'),('JSR','JSR'),('SDP','SDP'),('BZL','BZL'),('SYL','SYL')),default='DHK')
+    flying_to = models.CharField(max_length=100,choices =(('DHK','DHK'),('CTG','CTG'),('CXB','CXB'),('JSR','JSR'),('SDP','SDP'),('BZL','BZL'),('SYL','SYL')),default='CTG')
     flight = models.ForeignKey(Flights, on_delete=models.CASCADE)
 
     def __str__(self):
