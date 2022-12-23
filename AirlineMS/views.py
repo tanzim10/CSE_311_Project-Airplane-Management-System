@@ -1,9 +1,10 @@
 from django.shortcuts import render , redirect
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
-from .forms import CreateUserForm,ProfileForm,UserProfileUpdate,ProfileUpdateForm,SaveReservation
+from .forms import CreateUserForm,ProfileForm,UserProfileUpdate,ProfileUpdateForm,SaveReservation,SaveRoute
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from .models import *
 from .models import Profile
 
 
@@ -25,10 +26,9 @@ airline = [
 
 
 def home(request):
-    info = {
-        'info': airline
-    }
-    return render(request, 'AirlineMS/home.html', info)
+    airlines = Airlines.objects.all()
+    context = {'airlines': airlines}
+    return render(request,'AirlineMS/home.html',context)
 
 
 def about(request):
@@ -37,7 +37,7 @@ def about(request):
 
 def login(request):
 
-    return render(request, 'AirlineMS/login.html',)
+    return render(request, 'AirlineMS/login.html')
 
 
 def register(response):
@@ -93,16 +93,19 @@ def reservation(response):
 
     if response.method == 'POST':
         reserve = SaveReservation(response.POST)
-        if reserve.is_valid():
-
+        route = SaveRoute(response.POST)
+        if reserve.is_valid() and route.is_valid():
             reserve.save()
+            route.save()
             messages.success(response, f'Your Reservation has been completed!')
             return redirect('Air-home')
 
     else:
         reserve = SaveReservation()
+        route = SaveRoute()
 
-    context = {'reserve': reserve}
+    context = {'route': route,
+               'reserve':reserve}
 
     return render(response,'AirlineMS/reservation.html',context)
 

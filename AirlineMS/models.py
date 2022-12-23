@@ -28,6 +28,7 @@ class Airplanes(models.Model):
     airplane_name = models.CharField(max_length=250)
     type = models.CharField(max_length=250)
     max_seats = models.IntegerField(default=0)
+    airlines = models.ForeignKey(Airlines,on_delete=models.CASCADE, default ='')
 
 
 class Airport(models.Model):
@@ -35,7 +36,6 @@ class Airport(models.Model):
     city = models.CharField(max_length=250)
     status = models.CharField(max_length=2, choices=(('1', 'Active'), ('2', 'Inactive')), default=1)
     date_created = models.DateTimeField(auto_now=True)
-    airplane = models.ManyToManyField(Airplanes)
 
 
     def __str__(self):
@@ -46,6 +46,9 @@ class Flights(models.Model):
     fl_code = models.CharField(max_length=100)
     duration = models.CharField(max_length=250)
     airline = models.ForeignKey(Airlines,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(f"{self.fl_code}")
 
 
 
@@ -62,6 +65,7 @@ class Reservation(models.Model):
     email = models.CharField(max_length=250,null=True)
     contact = models.CharField(max_length=250,null =True)
     address = models.CharField(max_length=250,null=True)
+    number_of_tickets = models.CharField(max_length=100, choices=(('1','1'),('2','2'),('3','3'),('4','4')),default='1')
 
 
 
@@ -75,14 +79,20 @@ class FlightSchedule(models.Model):
     flight = models.ForeignKey(Flights, on_delete=models.CASCADE,primary_key=True)
     arr_time = models.DateTimeField()
     dept_time = models.DateTimeField()
-    flight_date = models.DateTimeField()
+    flight_date = models.DateField()
+
+    def __str__(self):
+        return str(f"{self.flight.flcode} -{self.flight_date}")
 
 class Route(models.Model):
 
-    route_no = models.IntegerField()
-    flying_from = models.CharField(max_length=100)
-    flying_to = models.CharField(max_length=100)
+    route_no = models.AutoField(primary_key=True)
+    flying_from = models.CharField(max_length=100, choices =(('DHK','DHK'),('CTG','CTG'),('CXB','CXB'),('JSR','JSR'),('SDP','SDP'),('BZL','BZL')),default='DHK')
+    flying_to = models.CharField(max_length=100,choices =(('DHK','DHK'),('CTG','CTG'),('CXB','CXB'),('JSR','JSR'),('SDP','SDP'),('BZL','BZL')),default='CTG')
     flight = models.ForeignKey(Flights, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return  str(f"{self.flying_from} to {self.flying_to}")
 
 
 class Fare(models.Model):

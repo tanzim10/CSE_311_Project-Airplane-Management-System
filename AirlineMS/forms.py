@@ -38,20 +38,22 @@ class ProfileUpdateForm(forms.ModelForm):
 
 class SaveReservation(forms.ModelForm):
 
+    flight = forms.ModelChoiceField(queryset= Flights.objects.all(), empty_label='Select a Flight', blank=True)
+
     class Meta:
         model = Reservation
-        fields = ['flight', 'first_name', 'last_name', 'gender', 'contact', 'email', 'address',]
+        fields = ['flight', 'first_name', 'last_name', 'gender', 'contact', 'email', 'address','number_of_tickets']
+        exclude =['flight_id']
 
 
-    def clean_flight(self):
-        fid = self.cleaned_data['flight']
-        try:
-            flight = Flights.objects.get(id =fid)
-            return flight
-        except:
-            raise forms.ValidationError(f"Invalid Flight")
 
 
+class SaveRoute(forms.ModelForm):
+
+    class Meta:
+        model = Route
+        fields = ['flying_from','flying_to']
+        exclude = ['route_no']
 
 
 

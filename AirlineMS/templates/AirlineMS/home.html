@@ -1,10 +1,31 @@
 {% extends 'AirlineMS/base.html' %}
-
 {% block content %}
-    {% for information in info %}
-        <h2>{{information.Name}}</h2>
-        <p>Type {{information.Type}} and Capacity {{information.Capacity}}</p>
-    {% endfor %}
+<br>
+
+<div>
+<div class ="row">
+    <div class ="col-md">
+        <div class="card card-body">
+            <table class="table">
+                <tr>
+                    <th>Airlines</th>
+                    <th>Airport</th>
+                    <th>Routes</th>
+                </tr>
+                {% for airline in airlines %}
+                    <tr>
+                        <td>{{airline.a_name}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+
 
 {% endblock content %}
 
