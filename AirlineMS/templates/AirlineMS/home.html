@@ -23,7 +23,7 @@
                     <th>Airlines</th>
                 </tr>
                 </thead>
-                <tbody
+                <tbody>
                     {% for airline in airlines %}
                     <tr>
                         <td>{{airline.a_name}}</td>
@@ -47,16 +47,21 @@
             </table>
         </div>
     </div>
-    <div class ="col-md-6" style=" position:relative; right:-870px; margin-top:-265px" >
+    <div class ="col-md-6" style=" position:relative; right:-870px; margin-top:-305px" >
         <div class="card card-body">
             <table class="table">
                 <tr>
-                    <th>Airport</th>
+                    <th>Flights</th>
                 </tr>
-                {% for airport in airports %}
-                    <tr>
-                        <td>{{airport.air_name}}</td>
-                    </tr>
+                <tr>
+                    <th>Airlines</th>
+                    <th>Flight Code</th>
+                </tr>
+                {% for flight in flights %}
+                <tr>
+                    <td>{{flight.airline.a_name}}</td>
+                    <td>{{flight.fl_code}}</td>
+                </tr>
                 {% endfor %}
             </table>
         </div>

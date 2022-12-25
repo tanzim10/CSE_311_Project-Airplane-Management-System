@@ -32,27 +32,28 @@ class UserProfileUpdate(forms.ModelForm):
 
 
 class ProfileUpdateForm(forms.ModelForm):
+
     class Meta:
         model = Profile
         fields = ['address', 'phone_number']
 
 class SaveReservation(forms.ModelForm):
 
-    flight = forms.ModelChoiceField(queryset= Flights.objects.all(), empty_label='Select a Flight', blank=True)
 
     class Meta:
         model = Reservation
-        fields = ['flight', 'first_name', 'last_name', 'gender', 'contact', 'email', 'address','number_of_tickets']
-        exclude =['flight_id']
+        fields = ['first_name', 'last_name', 'gender', 'contact', 'email', 'address','number_of_tickets']
 
 
 
 
 class SaveRoute(forms.ModelForm):
 
+    flight = forms.ModelChoiceField(queryset=Flights.objects.all(), empty_label='Select a Flight', blank=True)
+
     class Meta:
         model = Route
-        fields = ['flying_from','flying_to']
+        fields = ['flying_from','flying_to','flight']
         exclude = ['route_no']
 
 

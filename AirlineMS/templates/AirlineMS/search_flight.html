@@ -1,0 +1,38 @@
+{% extends 'AirlineMS/base.html' %}
+{% block content %}
+<form method="POST" action="{% url 'Air-search_flight' %}" class="form-inline">
+  {% csrf_token %}
+  <label for="flying_from" class="sr-only">Flying From</label>
+  <input type="text" name="flying_from" id="flying_from" placeholder="Flying From" class="form-control mr-sm-2" required>
+  <label for="flying_to" class="sr-only">Flying To</label>
+  <input type="text" name="flying_to" id="flying_to" placeholder="Flying_to" class="form-control mr-sm-2" required>
+  <label for="departure_date" class="sr-only">Departure Date</label>
+  <input type="date" name="departure_date" id="departure_date" class="form-control mr-sm-2" required>
+  <button type="submit" class="btn btn-primary">Search Flights</button>
+</form>
+
+{% if routes %}
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Departure City</th>
+        <th scope="col">Arrival City</th>
+        <th scope="col">Departure Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for route in routes %}
+        <tr>
+          <td>{{ route.flying_from }}</td>
+          <td>{{ route.flying_to }}</td>
+          <td>{{ dates }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endif %}
+
+
+
+
+{% endblock %}

@@ -31,14 +31,16 @@
             <div class="navbar-nav mr-auto">
               <a class="nav-item nav-link" href="{% url 'Air-home' %}">Home</a>
               <a class="nav-item nav-link" href="{% url 'Air-about' %}">About</a>
+                <a class="nav-item nav-link" href="{% url 'Air-search_flight' %}">Search Flight</a>
             </div>
             <!-- Navbar Right Side -->
-            <div class="navbar-nav" style="position: relative; left:900px;" >
+            <div class="navbar-nav" style="position: relative; left:800px;" >
                 {% if user.is_authenticated %}
 
                  <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
                 <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
                 <a class="nav-item nav-link" href="{% url 'Air-reservation' %}">Reservation</a>
+
 
                 {%else %}
                     <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>

@@ -6,8 +6,8 @@ urlpatterns = [
     path('about/',views.about,name = 'Air-about'),
     path('register/',views.register, name ='Air-register'),
     path('reservation/',views.reservation,name ='Air-reservation'),
-
-
+    path('searchflight/',views.search_flight,name ='Air-search_flight'),
+    path('view_reservations/',views.view_reservation,name ='Air-view_reservation'),
 
 
 ]
